@@ -115,11 +115,46 @@ document.webL10n = (function(window, document, undefined) {
     document.dispatchEvent(evtObject);
   }
 
-  function xhrLoadText(url, onSuccess, onFailure) {
+  //load data.ini from fake script (data.ini.js) , add by gsyan
+  function loadJsFromExternalScript(scriptSrc, varToGet, callback) {
+    var scriptToAdd = document.createElement('script');
+    scriptToAdd.setAttribute('type', 'text/javascript');
+    scriptToAdd.setAttribute('charset', 'utf-8');
+    scriptToAdd.setAttribute('src', scriptSrc);
+    scriptToAdd.onload = scriptToAdd.onreadystatechange = function () {
+      if (!scriptToAdd.readyState || scriptToAdd.readyState === "loaded" || scriptToAdd.readyState === "complete") {
+        scriptToAdd.onload = scriptToAdd.onreadystatechange = null;
+        document.getElementsByTagName('head')[0].removeChild(scriptToAdd);
+        if (typeof(callback) == 'function') {
+          callback(window[varToGet]);
+		  delete window[varToGet];
+        }
+      };
+    };
+    scriptToAdd.onerror = function () {
+      scriptToAdd.onerror = null;
+      document.getElementsByTagName('head')[0].removeChild(scriptToAdd); /* 移除 script */
+      if (typeof callback == 'function') {
+        callback();
+      }
+    }
+    var docHead = document.getElementsByTagName("head")[0];
+    docHead.insertBefore(scriptToAdd, docHead.firstChild);
+  };
+  
+  function xhrLoadText(url, onSuccess, onFailure, asynchronous) {
     onSuccess = onSuccess || function _onSuccess(data) {};
     onFailure = onFailure || function _onFailure() {
       consoleWarn(url + ' not found.');
     };
+
+	//add by gsyan, loading data.ini.js if access from local
+	if(/file/i.test(window.location.protocol)) {
+		url += '.js';
+		console.log('\n\nloading l10n file: '+url+' ...\n');
+		loadJsFromExternalScript(url, 'dataIniLines', onSuccess);
+		return;
+	}
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, gAsyncResourceLoading);

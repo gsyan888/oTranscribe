@@ -40,7 +40,7 @@ d-txt2.innerHTML    = Quick tips:
 d-txt3.innerHTML    = - <em>Ctrl+I</em> adds <em>italic</em> formatting and <b>Ctrl+B</b> adds <b>bold</b> formatting.
 d-txt4.innerHTML    = - Press ESC to play/pause, and Ctrl+J to insert the current timestamp.
 ; === Added 26 Jan 2014 ===
-export-otr          = oTranscribe format
+export-otr          = oTranscribe format (.otr)
 choose-youtube      = or YouTube video
 youtube-instrux     = Enter YouTube video URL:
 youtube-error       = Please enter a valid YouTube URL. For example: https://www.youtube.com/watch?v=dQw4w9WgXcQ
@@ -224,7 +224,7 @@ d-txt2.innerHTML    = 使用祕訣：
 d-txt3.innerHTML    = - <em>Ctrl+I</em> 加上 <em>斜體</em> 標記； <b>Ctrl+B</b> 加上 <b>粗體</b> 標記。
 d-txt4.innerHTML    = 按 ESC 播放或暫停，按 Ctrl+J 插入時間戳記
 ; === Added 26 Jan 2014 ===
-export-otr          = oTranscribe 格式
+export-otr          = oTranscribe 格式 (.otr)
 choose-youtube      = 或 YouTube 影片
 youtube-instrux     = 輸入 YouTube 影片網址：
 youtube-error       = 請輸入一個有效的 YouTube 影片網址，例如：https://www.youtube.com/watch?v=dQw4w9WgXcQ

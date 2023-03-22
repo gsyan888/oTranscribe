@@ -6,10 +6,12 @@ bundle.js
 l10n.js
 data.ini
 help/index.html
+opensource/index.html
+l10n.js
 
 NETWORK:
 *
  
 FALLBACK:
 
-# Updated 03/20/2023_17:00:57:713478177
+# Updated 03/20/2023_22:11:34:713478177
